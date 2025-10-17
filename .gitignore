@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# builds
+.dist/
+dist/
+.vite/
+
+# environment
+.env
+.env.*
+!.env.example
+!.env.local.example
+
+# editor
+*.log
+.DS_Store
+.idea/
+.vscode/
