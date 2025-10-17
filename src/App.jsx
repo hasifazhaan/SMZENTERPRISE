@@ -11,6 +11,7 @@ import DevTools from './components/Dev/DevTools'
 import Home from './components/Home'
 import { auth } from './firebase'
 import { onAuthStateChanged } from 'firebase/auth'
+import SessionManager from './components/Session/SessionManager'
 
 function NavItem({ to, children }){
   return (
@@ -44,6 +45,7 @@ export default function App(){
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
+      {currentUser && <SessionManager/>}
       {showHeader && (
         <header className="sticky top-0 z-10 bg-white/70 backdrop-blur border-b border-slate-200">
           <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
