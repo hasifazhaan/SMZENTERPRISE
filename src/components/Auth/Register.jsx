@@ -76,8 +76,7 @@ export default function Register(){
               Fast, reliable, and designed for your business needs.
             </p>
             <div className="text-xs opacity-75">
-              <div>CREATOR HERE</div>
-              <div>DESIGNER HERE</div>
+              <div>--SMZ</div>
             </div>
           </div>
         </div>

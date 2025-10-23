@@ -5,6 +5,12 @@ export default function Home(){
   const navigate = useNavigate()
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-blue-50 to-purple-50 flex items-center justify-center p-4">
+      <div className="">
+        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-teal-200 to-teal-300 rounded-2xl transform rotate-12 animate-bounce " style={{animationDelay: '0s', animationDuration: '3s'}}></div>
+        <div className="absolute top-20 right-0 w-24 h-24 bg-gradient-to-br from-purple-200 to-purple-300 rounded-xl transform -rotate-12 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
+        <div className="absolute bottom-0 left-1/4 w-28 h-28 bg-gradient-to-br from-blue-200 to-blue-300 rounded-2xl transform rotate-6 animate-bounce" style={{animationDelay: '2s', animationDuration: '3.5s'}}></div>
+      </div>
+        
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
         {/* Left Section - Brand and CTA */}
         <div className="text-center lg:text-left space-y-6">
@@ -41,14 +47,14 @@ export default function Home(){
           </div>
           
           {/* Admin Link */}
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <Link 
-              to="/admin" 
+              to="/auth/info/admin" 
               className="text-sm text-gray-500 hover:text-gray-700 underline transition-colors"
             >
               Admin Panel →
             </Link>
-          </div>
+          </div> */}
         </div>
         
         {/* Right Section - Visual Element */}
@@ -67,7 +73,7 @@ export default function Home(){
                     <span className="text-2xl">🧽</span>
                   </div>
                   <div className="text-gray-600 font-medium">Premium Sponges</div>
-                  <div className="text-sm text-gray-500">Bulk Ordering</div>
+                  <div className="text-sm text-gray-500">Ordering System</div>
                 </div>
               </div>
             </div>

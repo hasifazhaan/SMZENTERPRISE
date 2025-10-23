@@ -1,36 +1,51 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-export default function ProductCard({product}){
-  const [qty,setQty]=useState(0)
-
-  const addToCart = ()=>{
-    const cart = JSON.parse(localStorage.getItem('cart')||'[]')
-    if(qty<=0) return alert('Add quantity')
-    const existing = cart.find(c=>c.id===product.id)
-    if(existing) existing.qty += qty
-    else cart.push({id:product.id, name:product.name, price:product.price, qty, color:product.color})
-    localStorage.setItem('cart', JSON.stringify(cart))
-    alert('Added to cart')
-    setQty(0)
-  }
-
-  const increment = ()=> setQty(q=> Math.min((q||0)+1, 999))
-  const decrement = ()=> setQty(q=> Math.max((q||0)-1, 0))
+export default function ProductCard({ product, qty, onQtyChange }) {
+  const increment = () => onQtyChange(product.id, Math.min((qty || 0) + 1, 999))
+  const decrement = () => onQtyChange(product.id, Math.max((qty || 0) - 1, 0))
 
   return (
-    <div className="rounded-xl bg-white shadow-sm border border-slate-100 p-3 flex flex-col items-stretch aspect-square">
-      <div className="flex-1">
-        <div className="font-medium text-slate-900 truncate">{product.name}</div>
-        <div className="text-xs text-slate-500 mb-2 truncate">{product.color} • {product.shortDescription}</div>
-        <div className="text-sm font-semibold text-indigo-700">₹{product.price} / unit</div>
-      </div>
-      <div className="mt-3 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <button onClick={decrement} className="h-8 w-8 rounded-lg border border-slate-200 hover:bg-slate-50">−</button>
-          <div className="min-w-8 text-center">{qty}</div>
-          <button onClick={increment} className="h-8 w-8 rounded-lg border border-slate-200 hover:bg-slate-50">+</button>
+    <div className="rounded-xl bg-white shadow-md border border-slate-100 p-3 flex flex-col items-stretch">
+      <div className="flex-1 flex flex-col items-center">
+        {/* Product Image */}
+        {product.imageUrl ? (
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="h-32 w-full object-contain rounded-lg mb-2"
+          />
+        ) : (
+          <div className="h-32 w-full bg-slate-100 rounded-lg flex items-center justify-center text-slate-400 text-sm">
+            No Image
+          </div>
+        )}
+
+        {/* Product Info */}
+        <div className="font-medium text-slate-900 text-center truncate">{product.name}</div>
+        <div className=" font-medium  text-slate-500 text-center mb-1 truncate overflow-hidden">
+          {/* {product.color} • <br></br> */}
+          {product.shortDescription}
         </div>
-        <button onClick={addToCart} className="px-3 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700">Add</button>
+        <div className="text-sm font-semibold text-indigo-700 mb-2 text-center">
+          ₹{product.price} / Bundle
+        </div>
+      </div>
+
+      {/* Quantity Controls */}
+      <div className="mt-auto flex items-center justify-center gap-3">
+        <button
+          onClick={decrement}
+          className="h-8 w-8 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 font-bold text-lg"
+        >
+          −
+        </button>
+        <div className="min-w-8 text-center text-slate-800 font-medium">{qty}</div>
+        <button
+          onClick={increment}
+          className="h-8 w-8 rounded-lg border border-green-300 text-green-600 hover:bg-green-50 font-bold text-lg"
+        >
+          +
+        </button>
       </div>
     </div>
   )

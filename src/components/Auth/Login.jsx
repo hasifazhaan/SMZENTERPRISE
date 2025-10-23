@@ -42,8 +42,7 @@ export default function Login(){
               Your business, simplified.
             </p>
             <div className="text-xs opacity-75">
-              <div>CREATOR HERE</div>
-              <div>DESIGNER HERE</div>
+              <div>--SMZ</div>
             </div>
           </div>
         </div>

@@ -4,6 +4,7 @@ import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import Products from './components/Products/Products'
 import Cart from './components/Cart/Cart'
+import Orders from './components/Cart/VendorOrders'
 import AdminPanel from './components/Admin/AdminPanel'
 import About from './components/About'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -43,19 +44,21 @@ export default function App(){
 
   const showHeader = currentUser && location.pathname !== '/'
 
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
       {currentUser && <SessionManager/>}
       {showHeader && (
         <header className="sticky top-0 z-10 bg-white/70 backdrop-blur border-b border-slate-200">
           <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-            <h1 className="text-lg font-bold text-slate-900">Sponge Distributor</h1>
+            <h1 className="text-lg font-bold text-slate-900">SMZ Enterprise</h1>
             <nav className="space-x-3 flex items-center">
-              <div className="group"><NavItem to="/">Home</NavItem></div>
+              {/* <div className="group"><NavItem to="/">Home</NavItem></div> */}
               <div className="group"><NavItem to="/products">Products</NavItem></div>
               <div className="group"><NavItem to="/cart">Cart</NavItem></div>
               <div className="group"><NavItem to="/about">About</NavItem></div>
-              <div className="group opacity-70"><NavItem to="/dev">Dev</NavItem></div>
+              {/* <div className="group opacity-70"><NavItem to="/dev">Dev</NavItem></div> */}
+              <div className="group opacity-70"><NavItem to="/orders">Orders</NavItem></div>
             </nav>
           </div>
         </header>
@@ -67,10 +70,11 @@ export default function App(){
           <Route path="/login" element={<Login/>} />
           <Route path="/products" element={<ProtectedRoute><Products/></ProtectedRoute>} />
           <Route path="/cart" element={<ProtectedRoute><Cart/></ProtectedRoute>} />
-          <Route path="/admin" element={<AdminPanel/>} />
+          <Route path="/auth/info/admin" element={<AdminPanel/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/dev" element={<DevTools/>} />
           <Route path="/" element={<Home/>} />
+          <Route path="/orders" element={<ProtectedRoute><Orders/></ProtectedRoute>} />
         </Routes>
       </main>
       <style>{`
